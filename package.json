@@ -1,0 +1,77 @@
+{
+  "name": "otsc",
+  "version": "0.1.0",
+  "description": "Generate typed Axios clients and Zod schemas from OpenAPI",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/types/esm/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/types/cjs/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./generator": {
+      "import": {
+        "types": "./dist/types/esm/generator/index.d.ts",
+        "default": "./dist/generator/index.js"
+      },
+      "require": {
+        "types": "./dist/types/cjs/generator/index.d.cts",
+        "default": "./dist/generator/index.cjs"
+      }
+    },
+    "./compat": {
+      "import": {
+        "types": "./dist/types/esm/compat/index.d.ts",
+        "default": "./dist/compat/index.js"
+      },
+      "require": {
+        "types": "./dist/types/cjs/compat/index.d.cts",
+        "default": "./dist/compat/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "otsc": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "esbuild": "^0.28.2",
+    "handlebars": "^4.7.8",
+    "prettier": "^3.9.10",
+    "yaml": "^2.9.1"
+  },
+  "peerDependencies": {
+    "axios": "^1.20.0",
+    "zod": "^4.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "axios": "^1.21.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5",
+    "zod": "^4.6.7"
+  }
+}
